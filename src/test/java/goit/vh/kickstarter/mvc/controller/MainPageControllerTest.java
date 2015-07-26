@@ -35,7 +35,7 @@ public class MainPageControllerTest {
     @Mock
     private Input input;
 
-    private MainPageController controller;
+    //private MainPageController controller;
 
     @Before
     public void setUp() throws Exception {
@@ -46,11 +46,14 @@ public class MainPageControllerTest {
     //TODO How to path through this?????
     @Test()
     public void onApplicationStartRenderMainPage() throws Exception {
+        int[] path = new int[]{0, 0};
         MainPageController controller = new MainPageController(view, model);
-        int[] path = new int[]{1, 0};
+        controller.setLocationManager(locationManager);
+        locationManager.setPath(path);
 
-         verify(controller,times(1)).start(path);
-//         verify(view, times(1)).render(model);
-//        verify(locationManager,times(1)).dispatch();
+
+         controller.start(path);
+         verify(view, times(1)).render(model);
+        verify(locationManager,times(1)).dispatch();
     }
 }

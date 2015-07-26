@@ -49,10 +49,10 @@ public class LocationManagerTest  {
     public void whenDispatchToCategoryController(){
 
         LocationManager locationManager = new LocationManager(mainPageController,categoryController,projectController);
-
+               locationManager.setPath(new int[]{2, 0});
         locationManager.dispatch();
 
-        verify(mainPageController,times(1)).start(new int[]{2, 0});
+      //  verify(mainPageController,times(1)).start(new int[]{2, 0});
         verify(categoryController,times(1)).start(new int[]{2, 0});
 
     }
@@ -61,11 +61,10 @@ public class LocationManagerTest  {
     public void whenDispatchToProjestController(){
 
         LocationManager locationManager = new LocationManager(mainPageController,categoryController,projectController);
-
+        locationManager.setPath(new int[]{3, 1});
         locationManager.dispatch();
 
-
-        verify(projectController, times(1)).start(new int[]{3, 2});
+        verify(projectController, times(1)).start(new int[]{3, 1});
 
     }
 
